@@ -268,6 +268,7 @@ MonoBehaviour:
       m_Action: Move
       m_Flags: 8
     m_Flags: 0
+  speed: 10
 --- !u!1 &1475169232
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +375,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 17.662718
+  orthographic size: 6.5478
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
