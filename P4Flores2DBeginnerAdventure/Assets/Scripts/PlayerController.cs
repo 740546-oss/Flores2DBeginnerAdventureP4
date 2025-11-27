@@ -10,34 +10,47 @@ public class PlayerController : MonoBehaviour
     public InputAction MoveAction;
     Rigidbody2D rigidbody2d;
     Vector2 move;
-
-    public InputAction Move;
     public float speed = 10.0f;
+
+    // public InputAction Move;
+    // public float speed = 10.0f;
     // Start is called before the first frame update
+
+    // Variables related to the health system
+    public int maxHealth = 5;
+    public int health { get { return Health; } }
+    int currenthealth;
+
+
     void Start()
     {
         MoveAction.Enable();
         rigidbody2d = GetComponent<Rigidbody2D>();
+       //currentHealth = maxHealth;
     }
 
 
     // Update is called once per frame
     void Update()
-
     {
-        Vector2 move = MoveAction.ReadValue<Vector2>();
-
-        Vector2 position = (Vector2)transform.position + move * 10.0f * Time.deltaTime;
-
-        transform.position = position;
-
         move = MoveAction.ReadValue<Vector2>();
         Debug.Log(move);
-
-        void FixedUpdate()
-        {
-            Vector2 position = (Vector2)rigidbody2d.position + move * 3.0f * Time.deltaTime;
-            rigidbody2d.MovePosition(position);
-        }
     }
+
+
+    // FixedUpdate has the same call rate as the physics system 
+    void FixedUpdate()
+    {
+        Vector2 position = (Vector2)rigidbody2d.position + move * speed * Time.deltaTime;
+        rigidbody2d.MovePosition(position);
+    }
+
+
+   public void ChangeHealth(int amount)
+    {
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        Debug.Log(currentHealth + "/" + maxHealth);
+    }
+
+
 }
