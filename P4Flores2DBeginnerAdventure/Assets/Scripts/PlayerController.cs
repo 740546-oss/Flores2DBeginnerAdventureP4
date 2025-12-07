@@ -30,13 +30,17 @@ public class PlayerController : MonoBehaviour
     Vector2 moveDirection = new Vector2(1, 0);
 
 
+    // Variables related to projectiles
+    public GameObject projectilePrefab;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         MoveAction.Enable();
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-
 
         currentHealth = maxHealth;
     }
@@ -65,7 +69,15 @@ public class PlayerController : MonoBehaviour
             if (damageCooldown < 0)
                 isInvincible = false;
         }
+
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Launch();
+        }
+
     }
+
 
     // FixedUpdate has the same call rate as the physics system
     void FixedUpdate()
@@ -88,8 +100,18 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth + amount, 4, maxHealth);
         UIHandler.instance.SetHealthValue(currentHealth / (float)maxHealth);
+    }
+
+    void Launch()
+    {
+        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+        Projectile projectile = projectileObject.GetComponent<Projectile>();
+        projectile.Launch(moveDirection, 300);
+
+
+        animator.SetTrigger("Launch");
     }
 
 }

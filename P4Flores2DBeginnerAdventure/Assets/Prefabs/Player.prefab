@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7899663797101951705}
   - component: {fileID: 3002708477259487526}
   - component: {fileID: 3148055326553871607}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,6 +179,8 @@ MonoBehaviour:
   speed: 10
   maxHealth: 5
   timeInvincible: 2
+  projectilePrefab: {fileID: 1414562246680774585, guid: a7524a4bac7141e4a83978df248aa5bd,
+    type: 3}
 --- !u!61 &3002708477259487526
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -234,7 +236,7 @@ Animator:
   m_GameObject: {fileID: 2112630443909691307}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8a283e5215b7ec14f9aa4c2b775fb75d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 15c93a869dd14df478b6eebf0c4a9b3d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
